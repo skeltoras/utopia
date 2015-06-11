@@ -1,0 +1,37 @@
+<template name="authLogin">
+  {{#if currentUser}}
+    {{> authLogout}}
+  {{else}}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">           
+          <div class="panel panel-entry panel-login">
+            <div class="panel-heading text-center">
+              Login
+            </div>
+            <div class="panel-body">
+              <form role="form">
+                <div class="form-group">
+                  <label for="login-user">User</label>
+                  <input class="form-control" type="text" name="login-user" id="login-user" placeholder="Username oder Email">
+                </div>
+                <div class="form-group">
+                  <label for="login-password">Passwort</label>
+                  <input class="form-control" type="password" name="login-password" id="login-password" placeholder="">
+                </div>
+                <div class="form-group text-center">
+                  <button type="submit" class="btn btn-default">Anmelden</button>
+                </div>
+              </form>
+            </div>
+            <div class="panel-footer text-center">
+              <p>Passwort vergessen? Account benötigt?</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+  {{/if}}
+</template>

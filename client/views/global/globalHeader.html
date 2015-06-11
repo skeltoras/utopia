@@ -1,0 +1,36 @@
+<template name="globalHeader">
+  <!-- header -->
+  <div class="header global">
+    <div class="topnav">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <nav class="navbar" role="navigation">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              </div>
+              <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                  <li><a href="/dashboard"><i class="fa fa-home"></i> Home</a></li>
+                  <li><a href="/#"><i class="fa fa-cubes"></i> Neuer Eintrag</a></li>
+                  <li><a href="/#"><i class="fa fa-cubes"></i> Meine Einträge</a></li>
+                  <li><a href="/#"><i class="fa fa-cubes"></i> Mein Kalender</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  {{#with currentUser}}<li><a href="/acp/profil"><i class="fa fa-user"></i> {{#with profile}}{{nickname}}{{/with}}</a></li>{{/with}}
+                  {{#if currentUser}}<li><a href="/logout"><i class="fa fa-sign-out"></i> Ausloggen</a></li>{{/if}}
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>    
+</template>
