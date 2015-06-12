@@ -17,7 +17,11 @@ GlobalController = RouteController.extend({
 });
 
 Router.route('/home', function (){ 
-  this.render('home');
+  this.render('home', {
+    data: function() {
+      //return Games.find().fetch();
+    }
+  });
 }, {
   name: 'home',
   controller: 'GlobalController'
@@ -27,5 +31,12 @@ Router.route('/dashboard', function (){
   this.render('home');
 }, {
   name: 'dashboard',
+  controller: 'GlobalController'
+});
+
+Router.route('/game/new', function (){ 
+  this.render('gameNew');
+}, {
+  name: 'game.new',
   controller: 'GlobalController'
 });

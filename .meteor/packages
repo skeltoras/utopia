@@ -23,9 +23,9 @@ fortawesome:fontawesome
 accounts-password
 #accounts-ui
 #accounts-ui-unstyled
-#alanning:roles
+alanning:roles
 #ian:accounts-ui-bootstrap-3
-#mizzao:user-status
+mizzao:user-status
 
 # routing
 iron:router
@@ -39,9 +39,10 @@ mdg:geolocation
 sacha:spin
 #dbarrett:dropzonejs
 #bkruse:pace
-#natestrauser:select2
-#zimme:select2-bootstrap3-css
+natestrauser:select2
+zimme:select2-bootstrap3-css
 #rajit:bootstrap3-datepicker
+tsega:bootstrap3-datetimepicker
 chrismbeckett:toastr
 #froala:editor
 #summernote:summernote
@@ -50,8 +51,8 @@ chrismbeckett:toastr
 #jquery-waypoints
 
 # database
-#aldeed:simple-schema
-#aldeed:collection2
+aldeed:simple-schema
+aldeed:collection2
 #aldeed:template-extension
 #dburles:collection-helpers
 #meteorhacks:aggregate
@@ -70,7 +71,7 @@ meteorhacks:fast-render
 #mrt:jquery-csv
 
 # search
-#matteodem:easy-search
+matteodem:easy-search
 #bigdata:elasticsearch
 
 # seo

@@ -1,5 +1,9 @@
 UI.registerHelper('formatDate', function(date) {
-  return moment(date).format('DD. MMMM YYYY');
+  return moment(date).format('dddd HH:mm');
+});
+
+UI.registerHelper('formatCalendar', function(date) {
+  return moment(date).calendar();
 });
 
 UI.registerHelper('formatDateInput', function(date) {

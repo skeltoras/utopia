@@ -3,3 +3,10 @@
 //});
 
 moment.locale('de');
+
+toastr.options = {
+  "closeButton": true,
+  "newestOnTop": true,
+  "progressBar": true,
+  "preventDuplicates": false
+}

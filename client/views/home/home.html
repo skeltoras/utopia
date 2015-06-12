@@ -1,0 +1,107 @@
+<template name="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-box">
+          <div class="panel-body">
+            <h1>Willkommen zurück, {{#with currentUser}}{{#with profile}}{{nickname}}{{/with}}{{/with}}</h1>
+            <p>
+              Die einzelnen Einträge können per Suche oder per Filter (Spiel oder Spieltyp) eingegrenzt werden.<br>
+              Die Filter können nur getrennt voneinander und nicht gleichzeitig eingesetzt werden.
+            </p>
+          </div>  
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-box">
+          <div class="panel-body">
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="gameHomeSearch" name="gameHomeSearch" placeholder="Suche..." > 
+            </div>
+            <div class="col-sm-4">
+                <select class="form-control" id="filterTitle" name="filterTitle">
+                  <option value="">--- Spiel eingrenzen ---</option>
+                  <option value="Minecraft">Minecraft</option>
+                </select> 
+            </div>
+            <div class="col-sm-4">
+                <select class="form-control" id="filterType" name="filterType">
+                  <option value="">--- Spieltyp eingrenzen ---</option>
+                  <option value="Shooter">Shooter</option>
+                  <option value="Strategie">Strategie</option>
+                </select> 
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      {{#ifEsInputIsEmpty index="gamesHome"}}
+        {{> homeAll}}        
+      {{/ifEsInputIsEmpty}}
+          
+      {{#esEach index="gamesHome"}}
+        {{> homeResults}}
+      {{/esEach}}
+              
+      {{> esLoadMoreButton index="gamesHome"}}
+              
+      {{#ifEsHasNoResults index="gamesHome"}}
+        <div class="no-results"><h3><small>Keine Einträge gefunden. Bitte erneut suchen.</small></h3></div>
+      {{/ifEsHasNoResults}}
+              
+      {{#ifEsIsSearching index="gamesHome"}}
+        <div><h3><small>Es wird gesucht...</small></h3></div>
+      {{/ifEsIsSearching}}
+    </div>
+  </div>
+</template>
+
+<template name="homeResults">
+        <div class="col-sm-4">
+            <div class="panel panel-entry">
+              <div class="panel-heading">{{gameTitle}}</div>
+              <div class="panel-body">
+                <p>
+                  Suche {{#if gamePlayerMin}}min. {{gamePlayerMin}}{{/if}} / {{#if gamePlayerMax}}max. {{gamePlayerMax}}{{/if}} Spieler für {{formatCalendar gameDate}}.
+                </p>
+                <p>
+                  {{gameInfotext}}
+                </p>             
+              </div> 
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col-sm-8"><p>User: <a href="#"> {{gameUser}}</a></p></div>
+                  <div class="col-sm-4 join"><p><a href="#">Beitreten</a></p></div>
+                </div>
+              </div> 
+            </div>
+          </div>
+</template>
+
+<template name="homeAll">
+        {{#each getAllGames}}
+          <div class="col-sm-4">
+            <div class="panel panel-entry">
+              <div class="panel-heading">{{gameTitle}}</div>
+              <div class="panel-body">
+                <p>
+                  Suche {{#if gamePlayerMin}}min. {{gamePlayerMin}}{{/if}} / {{#if gamePlayerMax}}max. {{gamePlayerMax}}{{/if}} Spieler für {{formatCalendar gameDate}}.
+                </p>
+                <p>
+                  {{gameInfotext}}
+                </p>             
+              </div> 
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col-sm-8"><p>User: <a href="#"> {{gameUser}}</a></p></div>
+                  <div class="col-sm-4 join"><p><a href="#">Beitreten</a></p></div>
+                </div>
+              </div> 
+            </div>
+          </div>     
+        {{/each}}
+</template>

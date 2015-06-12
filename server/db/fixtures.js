@@ -9,7 +9,7 @@ if (Meteor.users.find().count() === 0) {
       nickname: "Skeltoras"
     },
   });
-  secondAdmin = Accounts.createUser({
+  trueffel = Accounts.createUser({
     username: 'Trueffel',
     email: 'trueffel@skeltoras.de',
     password: 'test',
@@ -17,6 +17,26 @@ if (Meteor.users.find().count() === 0) {
       first_name: "Vorname",
       last_name: "Nachname",
       nickname: "Trueffel"
+    },
+  });
+  towoko = Accounts.createUser({
+    username: 'Towoko',
+    email: 'towoko@skeltoras.de',
+    password: 'test',
+    profile: {
+      first_name: "Vorname",
+      last_name: "Nachname",
+      nickname: "Towoko"
+    },
+  });
+  spike = Accounts.createUser({
+    username: 'Spike',
+    email: 'spike@skeltoras.de',
+    password: 'test',
+    profile: {
+      first_name: "Vorname",
+      last_name: "Nachname",
+      nickname: "Spike"
     },
   });
   guest = Accounts.createUser({
