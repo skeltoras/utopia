@@ -1,0 +1,46 @@
+<template name="profileShow">
+  {{#with showProfileData}}    
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-box">
+              <div class="panel-body">
+                <h1><small>Profil von</small> {{#with profile}}{{nickname}}{{/with}} {{#if getIsOwn}}<span class="pull-right"><small><a href="/ucp/{{slug}}" class="btn btn-default btn-sm">Profil bearbeiten</a></small></span>{{/if}}</h1>
+                <blockquote class="blockquote-reverse">
+                  {{#with profile}}{{signature}}{{/with}}
+                </blockquote>            
+              </div>  
+            </div>
+          </div>
+        </div>
+        {{#with profile}}
+        <div class="row">
+          <div class="col-md-3">
+            <div class="box text-center">
+              {{#if getAvatar}}{{#with getAvatar}}<img src="{{this.url store='avatarFull'}}" alt="avatarFull" />{{/with}}{{else}}<img src="http://placehold.it/150x150" />{{/if}}
+              <br><br>
+              <p>
+                {{#if city}}{{city}}<br>{{/if}}
+                {{#if country}}{{country}}<br>{{/if}}
+                {{#if url}}<a href="http://{{url}}" target="_blank">{{url}}</a>{{/if}}
+              </p>
+              <p>
+                {{#if occupation}}{{occupation}}{{/if}}
+              </p>
+              <p>
+                {{#if facebook}}<a href="https://www.facebook.com/{{facebook}}" target="_blank"><i class="fa fa-facebook"></i></a><br>{{/if}}
+                {{#if twitter}}<a href=" https://twitter.com/intent/user?screen_name={{twitter}}" target="_blank"><i class="fa fa-twitter"></i> {{twitter}}</a><br>{{/if}}
+                {{#if skype}}<a href="skype:{{skype}}?userinfo" target="_blank"><i class="fa fa-skype"></i></a><br>{{/if}}
+              </p>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="box">
+              {{{info}}}
+            </div>
+          </div>
+        </div>
+        {{/with}}
+    </div>      
+  {{/with}}
+</template>

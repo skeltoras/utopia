@@ -24,6 +24,12 @@ Template.home.onRendered(function () {
 Template.homeAll.helpers({
   getAllGames: function() {
     return Games.find().fetch();
+  },
+  getUserPath: function() {
+    var user = this.gameUser;
+    user = user.replace(/\./g, "").replace(/ /g, "_").replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/Ä/g,"Ae").replace(/Ö/g,"Oe").replace(/Ü/g,"Ue").replace(/ß/g,"ss");
+    user = user.toLowerCase();
+    return user;
   }
 });
 

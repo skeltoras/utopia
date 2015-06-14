@@ -22,11 +22,13 @@ Template.authLogin.events({
     event.preventDefault();
     var loginVar = tpl.find('#login-user').value;;
     var passwordVar = tpl.find('#login-password').value;
-    Meteor.loginWithPassword(loginVar, passwordVar, function(err){
-      if(err)
+    var uid = Meteor.loginWithPassword(loginVar, passwordVar, function(err){
+      if(err) {
         toastr.warning(err.reason);
-      else
-        Router.go('/dashboard');  
+      }
+      else {       
+        Router.go('/dashboard');        
+      }        
     });
     return false;
   }    

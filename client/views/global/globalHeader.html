@@ -18,14 +18,29 @@
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                   <li><a href="/dashboard"><i class="fa fa-home"></i> Home</a></li>
-                  <li><a href="/game/new"><i class="fa fa-cubes"></i> Neuer Eintrag</a></li>
-                  <li><a href="/#"><i class="fa fa-cubes"></i> Meine Einträge</a></li>
-                  <li><a href="/#"><i class="fa fa-cubes"></i> Mein Kalender</a></li>
+                  <li><a href="/calendar"><i class="fa fa-calendar"></i> Kalender</a></li>
+                  <li><a href="/game/new"><i class="fa fa-plus"></i> Neu</a></li>
+                  <li class="disabled"><a href="/news"><i class="fa fa-bell"></i> News</a></li>
+                  <li class="disabled"><a href="/users"><i class="fa fa-users"></i> User</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                  {{#with currentUser}}<li><a href="/acp/profil"><i class="fa fa-user"></i> {{#with profile}}{{nickname}}{{/with}}</a></li>{{/with}}
-                  {{#if currentUser}}<li><a href="/logout"><i class="fa fa-sign-out"></i> Ausloggen</a></li>{{/if}}
-                </ul>
+                {{#if currentUser}}
+                  {{#with currentUser}}
+                    <ul class="nav navbar-nav navbar-right">
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i> {{#with profile}}{{nickname}}{{/with}}<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="/profil/{{slug}}"><i class="fa fa-user"></i> Mein Profil</a></li>
+                          <li class="disabled"><a href="/"><i class="fa fa-pencil"></i> Meine Einträge</a></li>
+                          <li class="disabled"><a href="/"><i class="fa fa-calendar-o"></i> Mein Kalender</a></li>
+                          <li><a href="/ucp/{{slug}}"><i class="fa fa-cubes"></i> Profil bearbeiten</a></li>
+                          <li class="disabled"><a href="/"><i class="fa fa-envelope"></i> Private Nachrichten</a></li>
+                          <li class="disabled"><a href="/"><i class="fa fa-cogs"></i> Einstellungen</a></li>                          
+                        </ul>
+                      </li>                  
+                      <li><a href="/logout"><i class="fa fa-sign-out"></i> Ausloggen</a></li>
+                    </ul>
+                  {{/with}}
+                {{/if}}
               </div>
             </nav>
           </div>

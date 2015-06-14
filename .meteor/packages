@@ -10,8 +10,9 @@ meteor-platform
 #insecure
 
 # basics
-jquery
+#jquery
 underscore
+underscorestring:underscore.string
 #coffeescript
 less
 #fourseven:scss
@@ -46,6 +47,7 @@ tsega:bootstrap3-datetimepicker
 chrismbeckett:toastr
 #froala:editor
 #summernote:summernote
+summernote:standalone 
 #andruschka:bootstrap-image-gallery
 #dburles:google-maps
 #jquery-waypoints
@@ -62,12 +64,13 @@ meteorhacks:fast-render
 #alethes:pages
 #osv:mongo-counter
 #reactive-var
+sergeyt:typeahead
 
 # filesystem
-#cfs:standard-packages
+cfs:standard-packages
 #cfs:filesystem
-#cfs:gridfs
-#cfs:graphicsmagick
+cfs:gridfs
+cfs:graphicsmagick
 #mrt:jquery-csv
 
 # search

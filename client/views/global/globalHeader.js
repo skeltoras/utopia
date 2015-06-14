@@ -2,7 +2,7 @@
 Template.globalHeader.onCreated(function () {
   var self = this;
   self.autorun(function () {
-    //self.subscribe('');   
+    self.subscribe('userSlug');
   });
 });
 

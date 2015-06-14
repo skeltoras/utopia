@@ -8,7 +8,9 @@ if (Meteor.users.find().count() === 0) {
       last_name: "Nachname",
       nickname: "Skeltoras"
     },
+    isFirstLogin: true
   });
+  
   trueffel = Accounts.createUser({
     username: 'Trueffel',
     email: 'trueffel@skeltoras.de',
@@ -49,4 +51,5 @@ if (Meteor.users.find().count() === 0) {
       nickname: "Gast"
     },
   });
+
 }

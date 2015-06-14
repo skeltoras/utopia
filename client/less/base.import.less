@@ -45,3 +45,96 @@ body {
 .toast {
   opacity: 1 !important;
 }
+
+.box {
+  background: rgba(0,0,0,0.8);
+  padding: 20px;
+}
+
+.thumbnailBox {
+  background: rgba(221,221,221,0.6);
+  border: 1px solid rgba(221,221,221,0.6);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 5px;
+  margin: 0 auto 20px auto;
+  height: 160px;
+  width: 160px;
+}
+
+.thumbnailBox .thumb.upload {
+  background: rgba(221, 221, 221, 0.4);
+  height: 100%;
+  width: 100%;
+}
+
+.thumbnailBox input[type=file] {
+  outline:none;
+  position: relative;
+  text-align: right;
+  -moz-opacity:0;
+  filter: ~"alpha(opacity:" 0 ~")";
+  opacity: 0;
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+}
+
+.thumbnailBox i.fa.fa-upload {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 2em;
+  z-index: 2;
+  position: absolute;
+  top: 110px;
+  right: 190px;
+}
+
+.thumbnailBox .thumb.show {
+  background: transparent;
+  height: 100%;
+  width: 100%;
+  vertical-align: middle;
+  z-index: 12;
+}
+.thumbnailBox i.fa.fa-times {
+  color: rgba(255,0,0,0.8);
+  z-index: 6;
+  position: relative;
+  left: 0;
+  top: -150px;
+}
+
+.note-editor {
+  background: rgba(225, 225, 225, 1);
+  color: rgba(85, 85, 85, 1);
+}
+
+/** TYPEAHEAD **/
+/* basic typeahead styles */
+.twitter-typeahead {
+  width: 100%;
+}
+
+.tt-menu {
+  background: rgba(225, 225, 225, 0.8);
+  border: 1px solid rgba(225, 225, 225, 1);
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+  color: rgba(85, 85, 85, 1);
+  width: 90%;
+  margin: 0 5%; 
+}
+
+.tt-suggestion {
+  padding: 3px 20px;
+  font-size: 1.2em;
+}
+
+.tt-suggestion:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #0097cf;
+}
