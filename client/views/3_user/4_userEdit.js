@@ -1,5 +1,5 @@
 //-- template onCreated functions
-Template.profileUCP.onCreated(function () {
+Template.userEdit.onCreated(function () {
   var self = this;
   self.autorun(function () {
     self.subscribe('getAvatar');   
@@ -7,11 +7,11 @@ Template.profileUCP.onCreated(function () {
 });
 
 //-- template onDestroyed functions
-Template.profileUCP.onDestroyed(function () {
+Template.userEdit.onDestroyed(function () {
 });
 
 //-- template onRendered functions
-Template.profileUCP.onRendered(function () {
+Template.userEdit.onRendered(function () {
   $(".count").text("Zeichen übrig: 140");
   $('.summernote').summernote({
     height: 150,
@@ -30,7 +30,7 @@ Template.profileUCP.onRendered(function () {
 });
 
 //-- template helpers                            
-Template.profileUCP.helpers({
+Template.userEdit.helpers({
   getUserData: function() {
     var data = Meteor.users.findOne();
     Session.set('userId', data._id);
@@ -42,7 +42,7 @@ Template.profileUCP.helpers({
 });
 
 //-- template events
-Template.profileUCP.events({ 
+Template.userEdit.events({ 
   'submit form': function(e,tpl) {
     e.preventDefault();
     
@@ -72,7 +72,7 @@ Template.profileUCP.events({
           slug = slug.replace(/\./g, "").replace(/ /g, "_").replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/Ä/g,"Ae").replace(/Ö/g,"Oe").replace(/Ü/g,"Ue").replace(/ß/g,"ss");
           slug = slug.toLowerCase();
 
-          Router.go('/profil/' + slug);
+          Router.go('/profile/' + slug);
         }          
       });
     } else {

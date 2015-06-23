@@ -5,7 +5,7 @@
           <div class="col-md-12">
             <div class="panel panel-box">
               <div class="panel-body">
-                <h1><small>Profil von</small> {{#with profile}}{{nickname}}{{/with}} {{#if getIsOwn}}<span class="pull-right"><small><a href="/ucp/{{slug}}" class="btn btn-default btn-sm">Profil bearbeiten</a></small></span>{{/if}}</h1>
+                <h1><small>Profil von</small> {{#with profile}}{{nickname}}{{/with}} {{#if getIsOwn}}<span class="pull-right"><small><a href="/user/edit" class="btn btn-default btn-sm">Profil bearbeiten</a></small></span>{{/if}}</h1>
                 <blockquote class="blockquote-reverse">
                   {{#with profile}}{{signature}}{{/with}}
                 </blockquote>            

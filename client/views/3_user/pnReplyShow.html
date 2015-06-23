@@ -1,0 +1,23 @@
+<template name="pnReplyShow">
+{{#if getReplies}}
+  {{#each getReplies}}
+    <div class="row">         
+      <div class="col-md-9 pull-right">
+        <div class="box pnReplyShow head">
+          <small>
+            Gesendet: {{formatCalendar updatedAt}} von <a href="" class="getUserLink" id="{{replyUser}}">{{replyUser}}</a><br>
+          </small>            
+        </div>
+        <div class="box pnReplyShow body">            
+          <h4>
+              {{replyTitle}}  
+          </h4>
+          <p>
+            {{{replyText}}}
+          </p>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+{{/if}}
+</template>

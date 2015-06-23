@@ -6,6 +6,10 @@ UI.registerHelper('formatCalendar', function(date) {
   return moment(date).calendar();
 });
 
+UI.registerHelper('formatTime', function(date) {
+  return moment(date).format('HH:mm');
+});
+
 UI.registerHelper('formatDateInput', function(date) {
   return moment(date).format('YYYY-MM-DD');
 });

@@ -1,0 +1,115 @@
+<template name="pnList">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-box">
+          <div class="panel-body">
+            <h1>Private Nachrichten <span class="pull-right"><button class="btn btn-default" id="pnNew" name="pnNew">neue Nachricht</button></span></h1>
+          </div>  
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="box">
+          <p><a href="" class="pnInbox">Posteingang</a></p>
+          <p><a href="" class="pnArchive">Archiv</a></p>
+          <p><a href="" class="pnOutbox">Gesendet</a></p> 
+         </div> 
+      </div>
+      {{#if getInbox}}
+        {{> pnInbox}}  
+      {{/if}}
+      {{#if getArchive}}
+        {{> pnArchive}}  
+      {{/if}}
+      {{#if getOutbox}}
+        {{> pnOutbox}}  
+      {{/if}}
+    </div>
+  </div>
+</template>
+
+<template name="pnInbox">
+  <div class="col-md-8">
+    <div class="box">
+      <h3>Posteingang</h3>
+      <table class="table table-condensed pnList">
+        <thead>
+          <tr>
+            <th class="col-sm-1"></th>
+            <th class="col-sm-5">Betreff</th>
+            <th class="col-sm-2">User</th>
+            <th class="col-sm-4">Datum</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each getMessages}}
+            <tr>
+              <td>{{#if checkNew}}<i class="fa fa-envelope"></i>{{else}}<i class="fa fa-file-text"></i>{{/if}}</td>
+              <td><a href="/user/messages/show/{{_id}}">{{messageTitle}}</a></td>
+              <td><a href="" class="getUserLink" id="{{messageUser}}">{{messageUser}}</a></td>
+              <td>{{formatCalendar updatedAt}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>  
+</template>
+
+<template name="pnArchive">
+  <div class="col-md-8">
+    <div class="box">
+      <h3>Archiv</h3>
+      <table class="table table-condensed pnList">
+        <thead>
+          <tr>
+            <th class="col-sm-1"></th>
+            <th class="col-sm-5">Betreff</th>
+            <th class="col-sm-2">User</th>
+            <th class="col-sm-4">Datum</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each getMessages}}
+            <tr>
+              <td>{{#if checkNew}}<i class="fa fa-envelope"></i>{{else}}<i class="fa fa-file-text"></i>{{/if}}</td>
+              <td><a href="/user/messages/show/{{_id}}">{{messageTitle}}</a></td>
+              <td><a href="" class="getUserLink" id="{{messageUser}}">{{messageUser}}</a></td>
+              <td>{{formatCalendar updatedAt}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>  
+</template>
+
+<template name="pnOutbox">
+  <div class="col-md-8">
+    <div class="box">
+      <h3>Postausgang</h3>
+      <table class="table table-condensed pnList">
+        <thead>
+          <tr>
+            <th class="col-sm-1"></th>
+            <th class="col-sm-5">Betreff</th>
+            <th class="col-sm-2">User</th>
+            <th class="col-sm-4">Datum</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each getMessages}}
+            <tr>
+              <td>{{#if checkNew}}<i class="fa fa-envelope"></i>{{else}}<i class="fa fa-file-text"></i>{{/if}}</td>
+              <td><a href="/user/messages/show/{{_id}}">{{messageTitle}}</a></td>
+              <td><a href="" class="getUserLink" id="{{messageUser}}">{{messageUser}}</a></td>
+              <td>{{formatCalendar updatedAt}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>  
+</template>

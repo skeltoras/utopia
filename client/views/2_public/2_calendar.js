@@ -1,5 +1,5 @@
 //-- template onCreated functions
-Template.calendarAll.onCreated(function () {
+Template.calendar.onCreated(function () {
   var self = this;
   self.autorun(function () {
     //self.subscribe('getAllCalendarEntries');
@@ -7,11 +7,11 @@ Template.calendarAll.onCreated(function () {
 });
 
 //-- template onDestroyed functions
-Template.calendarAll.onDestroyed(function () {
+Template.calendar.onDestroyed(function () {
 });
 
 //-- template onRendered functions
-Template.calendarAll.onRendered(function () {
+Template.calendar.onRendered(function () {
   $( document ).ready(function() {
     //initialize the calendar in this template
     $('.calendar').fullCalendar({    
@@ -32,6 +32,7 @@ Template.calendarAll.onRendered(function () {
         callback(events);
       },
       lang: 'de',
+      timeFormat: 'H:mm',
       header: { center: 'month,basicWeek,basicDay'}
     });
   
@@ -43,9 +44,9 @@ Template.calendarAll.onRendered(function () {
 });
 
 //-- template helpers                            
-Template.calendarAll.helpers({
+Template.calendar.helpers({
 });
 
 //-- template events
-Template.calendarAll.events({
+Template.calendar.events({
 });

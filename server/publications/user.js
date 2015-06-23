@@ -10,6 +10,14 @@ Meteor.publish('getProfileData',function(user){
   return Meteor.users.find({slug: user}, {fields: { 'profile' : 1, 'slug': 1}});
 });
 
+Meteor.publish('getUserList',function(){
+  return Meteor.users.find({}, {fields: { 'profile': 1, 'slug': 1, 'status': 1}, sort: {'username': 1}});
+});
+
+Meteor.publish('getAllUsernames',function(){
+  return Meteor.users.find({}, {fields: { 'createdAt': 0, 'emails': 0, 'isFirstLogin': 0, 'slug': 0, 'status': 0, 'profile': 0, 'services': 0, }, sort: {username: 1}});
+});
+
 Meteor.publish('userProfile',function(slug){
   var user=Meteor.users.findOne({slug:slug});
   if(!user){

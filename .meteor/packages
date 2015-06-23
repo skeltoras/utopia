@@ -26,6 +26,7 @@ accounts-password
 #accounts-ui-unstyled
 alanning:roles
 #ian:accounts-ui-bootstrap-3
+mizzao:timesync
 mizzao:user-status
 
 # routing
@@ -42,6 +43,7 @@ sacha:spin
 #bkruse:pace
 natestrauser:select2
 zimme:select2-bootstrap3-css
+ctjp:meteor-bootstrap-switch
 #rajit:bootstrap3-datepicker
 tsega:bootstrap3-datetimepicker
 chrismbeckett:toastr

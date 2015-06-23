@@ -2,9 +2,9 @@
 Template.gameNew.onCreated(function () {
   var self = this;
   self.autorun(function () {
-    self.subscribe('getAllGames'); //DEBUG 
-    self.subscribe('getAllGenres'); //DEBUG 
-    self.subscribe('getAllListedGames'); //DEBUG   
+    //self.subscribe('getAllGames');  
+    //self.subscribe('getAllGenres'); //DEBUG 
+    self.subscribe('getAllListedGames');   
   });
 });
 
@@ -18,6 +18,7 @@ Template.gameNew.onRendered(function () {
     donetext: 'Fertig',
     placement: 'right'
   });
+  $("#gameOwnServer").bootstrapSwitch();
   $(".count").text("Zeichen übrig: 200");
   Meteor.typeahead.inject();
 });
@@ -40,21 +41,29 @@ Template.gameNew.events({
     e.preventDefault();
     
     var gameTitle = $(e.target).find('[name=gameTitle]').val();
-    var gameType = $(e.target).find('[name=gameType]').val();
-    if(gameTitle && gameType) {
+    //var gameType = $(e.target).find('[name=gameType]').val();
+    if(gameTitle) {
       var gameData = [];
       var gameDateDay = $(e.target).find('[name=gameDateDay]').val();
       gameDateDay = moment().add(gameDateDay, 'days').format('YYYY-MM-DD');  
       var gameDateTime = $(e.target).find('[name=gameDateTime]').val();
       var gameDate = gameDateDay + ' ' + gameDateTime;
-      gameTitle = s.capitalize(gameTitle, true);
+      gameTitle = s.capitalize(gameTitle);
+      var gameOwnServer = false;
+      if($(e.target).find('[name=gameOwnServer]').is(':checked')) {
+        gameOwnServer = true;   
+      }
+      
       gameData = {
         gameTitle: gameTitle,
-        gameType: $(e.target).find('[name=gameType]').val(),
+        //gameType: $(e.target).find('[name=gameType]').val(),
         gameInfotext: $(e.target).find('[name=gameInfotext]').val(),
-        gamePlayerMin: $(e.target).find('[name=gamePlayerMin]').val(),
+        //gamePlayerMin: $(e.target).find('[name=gamePlayerMin]').val(),
         gamePlayerMax: $(e.target).find('[name=gamePlayerMax]').val(),
         gameDate: gameDate,
+        gameCount: 0,
+        gameOwnServer: gameOwnServer,
+        gameServer: $(e.target).find('[name=gameServer]').val(),
         gameUser: Meteor.user().profile.nickname,
         submitted: new Date().getTime(), 
         updatedAt: new Date().getTime()
@@ -63,12 +72,12 @@ Template.gameNew.events({
         if(error)
           toastr.error('Fehler: ' + error.reason);
         if(result) {
-          toastr.success('Eintrag für ' + gameTitle + ' erfolgreich angelegt');
+          //toastr.success('Eintrag für ' + gameTitle + ' erfolgreich angelegt');
           Router.go('dashboard');        
         }
       });
     } else {
-      toastr.error('Ein Spiel und Genre muss zwingend angegeben werden!');
+      toastr.error('Ein Spiel muss zwingend angegeben werden!');
     } 
   },
   'keyup #gameInfotext': function(e, tpl) {

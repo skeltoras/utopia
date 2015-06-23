@@ -1,4 +1,4 @@
-<template name="home">
+<template name="dashboard">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -21,17 +21,12 @@
               <input type="text" class="form-control" id="gameHomeSearch" name="gameHomeSearch" placeholder="Suche..." > 
             </div>
             <div class="col-sm-4">
-                <select class="form-control" id="filterTitle" name="filterTitle">
-                  <option value="">--- Spiel eingrenzen ---</option>
-                  <option value="Minecraft">Minecraft</option>
-                </select> 
+              <!-- gameTitle -->
+              {{> getGamesSelect}} 
             </div>
             <div class="col-sm-4">
-                <select class="form-control" id="filterType" name="filterType">
-                  <option value="">--- Spieltyp eingrenzen ---</option>
-                  <option value="Shooter">Shooter</option>
-                  <option value="Strategie">Strategie</option>
-                </select> 
+              <!-- gameType -->
+              {{> getGenresSelect}}
             </div>
           </div>  
         </div>
@@ -40,11 +35,11 @@
     
     <div class="row">
       {{#ifEsInputIsEmpty index="gamesHome"}}
-        {{> homeAll}}        
+        {{> dashboardAll}}        
       {{/ifEsInputIsEmpty}}
           
       {{#esEach index="gamesHome"}}
-        {{> homeResults}}
+        {{> dashboardResults}}
       {{/esEach}}
               
       {{> esLoadMoreButton index="gamesHome"}}
@@ -60,45 +55,77 @@
   </div>
 </template>
 
-<template name="homeResults">
-        <div class="col-sm-4">
+<template name="dashboardResults">
+          <div class="col-sm-4">
             <div class="panel panel-entry">
               <div class="panel-heading">{{gameTitle}}</div>
               <div class="panel-body">
+                <!-- WAS -->
                 <p>
-                  Suche {{#if gamePlayerMin}}min. {{gamePlayerMin}}{{/if}} / {{#if gamePlayerMax}}max. {{gamePlayerMax}}{{/if}} Spieler für {{formatCalendar gameDate}}.
+                  <i>{{{gameInfotext}}}</i>
                 </p>
+                <!-- WANN -->
                 <p>
-                  {{gameInfotext}}
+                  Wann: {{formatCalendar gameDate}}.
+                </p>
+                <!-- WO -->
+                <p>
+                  Wo: Auf unseren Servern.
+                </p>
+                <!-- WER -->
+                <p>
+                  Eingetragene Spieler ( 0{{#if gamePlayerMax}} / {{gamePlayerMax}}{{/if}} ):
                 </p>             
               </div> 
               <div class="panel-footer">
                 <div class="row">
-                  <div class="col-sm-8"><p>User: <a href="profil/{{gameUser}}"> {{gameUser}}</a></p></div>
-                  <div class="col-sm-4 join"><p><a href="#">Beitreten</a></p></div>
+                  <div class="col-sm-8"><p>User: <a href="profil/{{getUserPath}}"> {{gameUser}}</a></p></div>
+                  <div class="col-sm-4 join"><p><a href="" id="{{_id}}" class="joinThis">Beitreten</a></p></div>
                 </div>
               </div> 
             </div>
           </div>
 </template>
 
-<template name="homeAll">
+<template name="dashboardAll">
         {{#each getAllGames}}
           <div class="col-sm-4">
             <div class="panel panel-entry">
               <div class="panel-heading">{{gameTitle}}</div>
               <div class="panel-body">
+                <!-- WAS -->
                 <p>
-                  Suche {{#if gamePlayerMin}}min. {{gamePlayerMin}}{{/if}} / {{#if gamePlayerMax}}max. {{gamePlayerMax}}{{/if}} Spieler für {{formatCalendar gameDate}}.
+                  <i>{{{gameInfotext}}}</i>
                 </p>
+                <!-- WANN -->
                 <p>
-                  {{gameInfotext}}
+                  Wann: {{formatCalendar gameDate}}.
+                </p>
+                <!-- WO -->
+                <p>
+                  {{#if gameOwnServer}}Wo: Auf unseren Servern. {{else}}{{#if gameServer}} Wo: {{gameServer}}{{/if}}{{/if}}
+                </p>
+                <!-- WER -->
+                <p>
+                  Eingetragene Spieler ( {{gameCount}} {{#if gamePlayerMax}}/ {{gamePlayerMax}}{{/if}} ): {{#each gamePlayers}}<a href="profil/{{getPlayerPath}}">{{userName}}</a> {{/each}}
                 </p>             
               </div> 
               <div class="panel-footer">
                 <div class="row">
                   <div class="col-sm-8"><p>User: <a href="profil/{{getUserPath}}"> {{gameUser}}</a></p></div>
-                  <div class="col-sm-4 join"><p><a href="#">Beitreten</a></p></div>
+                  {{#if checkFull}}
+                    {{#if checkIfJoined}}
+                      <div class="col-sm-4 join"><p><a href="" id="{{_id}}" class="leaveThis">Verlassen</a></p></div>
+                    {{else}}
+                      <div class="col-sm-4 join full"><p><a href="" id="{{_id}}" class="joinDeactivated">VOLL</a></p></div>
+                    {{/if}}
+                  {{else}}
+                    {{#if checkIfJoined}}
+                      <div class="col-sm-4 join"><p><a href="" id="{{_id}}" class="leaveThis">Verlassen</a></p></div>
+                    {{else}}
+                      <div class="col-sm-4 join"><p><a href="" id="{{_id}}" class="joinThis">Beitreten</a></p></div>
+                    {{/if}}
+                  {{/if}}
                 </div>
               </div> 
             </div>

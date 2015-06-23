@@ -1,0 +1,55 @@
+<template name="pnShow">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-box">
+          <div class="panel-body">
+            <h1>//Nachricht</h1>
+          </div>  
+        </div>
+      </div>
+    </div>
+    {{#with getMessage}}
+      <div class="row">
+        <div class="col-md-3 pnUser">
+          <div class="box pnUser text-center">
+            {{#with getUserData}}
+              <p>
+                <strong><a href="/profile/{{slug}}">{{username}}</a></strong>
+              </p>
+              {{#if getAvatar}}{{#with getAvatar}}<img src="{{this.url store='avatarFull'}}" alt="avatarFull" />{{/with}}{{else}}<img src="http://placehold.it/150x150" />{{/if}}
+            {{/with}}
+            <div class="spacer-20"></div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="box pnText head">
+            <small>
+              Gesendet: {{formatCalendar updatedAt}} um {{formatTime updatedAt}}<br>
+              Empfänger: {{#each messageReceiver}}<a href="" class="getUserLink" id="{{userName}}">{{userName}}</a> {{/each}}  
+            </small>            
+          </div>
+          <div class="box pnText body">            
+            <h4>
+              {{messageTitle}}  
+            </h4>
+            <p>
+              {{{messageText}}}
+            </p>
+          </div>
+          <div class="box pnText foot">            
+            <button class="btn btn-pn" id="reply"><i class="fa fa-reply"></i> Antworten</button>
+            <button class="btn btn-pn pull-right" id="archive"><i class="fa fa-archive"></i> Archivieren</button>
+            <button class="btn btn-pn pull-right" id="delete"><i class="fa fa-trash-o"></i> Löschen</button>
+          </div>
+        </div>
+      </div>
+      {{#if getReplyForm}}
+        <div class="row">
+          {{> pnReplyForm}}    
+        </div>
+      {{/if}}
+      {{> pnReplyShow}}      
+    {{/with}}
+  </div>
+</template>

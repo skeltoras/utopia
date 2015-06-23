@@ -1,0 +1,57 @@
+<template name="userList">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-box">
+          <div class="panel-body">
+            <h1>Userliste</h1>
+          </div>  
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="box">
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th class="col-md-2">Onlinestatus</th>
+                <th class="col-md-4">Nickname</th>
+                <th class="col-md-6"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each getUsers}}
+                <tr>                  
+                  <td class="text-center">
+                    {{#if status}}
+                      {{#with status}}
+                        {{#if online}}
+                          {{#if idle}}<i class="fa fa-circle idle"></i>{{else}}<i class="fa fa-circle on"></i>{{/if}}
+                        {{else}}
+                          <i class="fa fa-circle off"></i>
+                        {{/if}}
+                      {{/with}}
+                    {{else}}
+                      <i class="fa fa-circle off"></i>
+                    {{/if}}
+                  </td>                                                          
+                  <td><a href="/profile/{{slug}}">{{#with profile}}{{nickname}}{{/with}}</a></td>
+                  <td>
+                    {{#with status}}
+                      {{#if lastLogin}}
+                        {{#with lastLogin}}Zuletzt online: {{formatDate date}}{{/with}}
+                      {{else}}
+                        Bisher nicht online gewesen
+                      {{/if}}
+                    {{/with}}
+                  </td>                                        
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

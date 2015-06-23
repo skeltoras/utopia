@@ -18,7 +18,7 @@ Template.authLogin.helpers({
 
 //-- template events
 Template.authLogin.events({
-  'submit form': function(evt, tpl){
+  'submit form': function(event, tpl){
     event.preventDefault();
     var loginVar = tpl.find('#login-user').value;;
     var passwordVar = tpl.find('#login-password').value;

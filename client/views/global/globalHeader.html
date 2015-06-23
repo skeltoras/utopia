@@ -19,9 +19,9 @@
                 <ul class="nav navbar-nav">
                   <li><a href="/dashboard"><i class="fa fa-home"></i> Home</a></li>
                   <li><a href="/calendar"><i class="fa fa-calendar"></i> Kalender</a></li>
-                  <li><a href="/game/new"><i class="fa fa-plus"></i> Neu</a></li>
-                  <li class="disabled"><a href="/news"><i class="fa fa-bell"></i> News</a></li>
-                  <li class="disabled"><a href="/users"><i class="fa fa-users"></i> User</a></li>
+                  <li><a href="/newgame"><i class="fa fa-plus"></i> Neu</a></li>
+                  <li><a href="/news"><i class="fa fa-bell"></i> News</a></li>
+                  <li><a href="/userlist"><i class="fa fa-users"></i> User</a></li>
                 </ul>
                 {{#if currentUser}}
                   {{#with currentUser}}
@@ -29,14 +29,24 @@
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i> {{#with profile}}{{nickname}}{{/with}}<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="/profil/{{slug}}"><i class="fa fa-user"></i> Mein Profil</a></li>
-                          <li class="disabled"><a href="/"><i class="fa fa-pencil"></i> Meine Einträge</a></li>
-                          <li class="disabled"><a href="/"><i class="fa fa-calendar-o"></i> Mein Kalender</a></li>
-                          <li><a href="/ucp/{{slug}}"><i class="fa fa-cubes"></i> Profil bearbeiten</a></li>
-                          <li class="disabled"><a href="/"><i class="fa fa-envelope"></i> Private Nachrichten</a></li>
-                          <li class="disabled"><a href="/"><i class="fa fa-cogs"></i> Einstellungen</a></li>                          
+                          <li><a href="/user/show/{{slug}}"><i class="fa fa-user"></i> Mein Profil</a></li>
+                          <li><a href="/user/entries"><i class="fa fa-pencil"></i> Meine Einträge</a></li>
+                          <li><a href="/user/calendar"><i class="fa fa-calendar-o"></i> Mein Kalender</a></li>
+                          <li><a href="/user/edit"><i class="fa fa-cubes"></i> Profil bearbeiten</a></li>
+                          <li><a href="/user/messages/list"><i class="fa fa-inbox"></i> Private Nachrichten</a></li>
+                          <li><a href="/user/settings"><i class="fa fa-cogs"></i> Einstellungen</a></li>                   
                         </ul>
-                      </li>                  
+                      </li>
+                      {{#if isInRole 'admin'}}
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-cogs"></i> Admin<span class="caret"></span></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="/"><i class="fa fa-cubes"></i> News</a></li>
+                            <li><a href="/"><i class="fa fa-cubes"></i> Spiele</a></li>
+                            <li><a href="/"><i class="fa fa-cubes"></i> User</a></li>
+                          </ul>
+                        </li>
+                      {{/if}}                   
                       <li><a href="/logout"><i class="fa fa-sign-out"></i> Ausloggen</a></li>
                     </ul>
                   {{/with}}

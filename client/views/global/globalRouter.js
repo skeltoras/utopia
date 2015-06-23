@@ -12,38 +12,24 @@ GlobalController = RouteController.extend({
       }
     } else {
       Meteor.call('checkFirstLogin', function(error,result){
-        if(result) {
-          var path = '/ucp/' + result;
-          console.log(path);
-          Router.go(path);
-        }
+        if(result)
+          Router.go('/user/edit');
       })      
       this.next();
     }
   }
 });
 
-Router.route('/home', function (){ 
-  this.render('home', {
-    data: function() {
-      //return Games.find().fetch();
-    }
-  });
-}, {
-  name: 'home',
-  controller: 'GlobalController'
-});
-
+/** PUBLIC **/
 Router.route('/dashboard', function (){ 
-  this.render('home');
+  this.render('dashboard');
 }, {
   name: 'dashboard',
   controller: 'GlobalController'
 });
 
-// ***** ALL **** //
 Router.route('/calendar', function (){ 
-  this.render('calendarAll', {
+  this.render('calendar', {
     waitOn: function() {
       return Meteor.subscribe('getAllCalendarEntries');
     },
@@ -53,18 +39,116 @@ Router.route('/calendar', function (){
     }
   });
 }, {
-  name: 'galendarAll',
+  name: 'calendar',
   controller: 'GlobalController'
 });
 
-Router.route('/game/new', function (){ 
+Router.route('/newgame', function (){ 
   this.render('gameNew');
 }, {
   name: 'game.new',
   controller: 'GlobalController'
 });
 
-// ***** PROFILES **** //
+Router.route('/news', function (){ 
+  this.render('news');
+}, {
+  name: 'news',
+  controller: 'GlobalController'
+});
+
+Router.route('/userlist', function (){ 
+  this.render('userList');
+}, {
+  name: 'user.list',
+  controller: 'GlobalController'
+});
+
+
+// ***** PROFILES / USER **** //
+Router.route('/user/show/:slug', function (){ 
+  this.render('profileShow', {
+    data: function() {
+      Session.set('profile', this.params.slug);
+    }
+  });
+}, {
+  name: 'user.show',
+  controller: 'GlobalController'
+});
+
+Router.route('/profile/:slug', function (){ 
+  this.render('profileShow', {
+    data: function() {
+      Session.set('profile', this.params.slug);
+    }
+  });
+}, {
+  name: 'profile.show',
+  controller: 'GlobalController'
+});
+
+Router.route('/user/edit', function (){ 
+  this.render('userEdit');
+}, {
+  name: 'user.edit',
+  controller: 'GlobalController'
+});
+
+Router.route('/user/settings', function (){ 
+  this.render('userSettings');
+}, {
+  name: 'user.settings',
+  controller: 'GlobalController'
+});
+
+Router.route('/user/entries', function (){ 
+  this.render('userEntries');
+}, {
+  name: 'user.entries',
+  controller: 'GlobalController'
+});
+
+Router.route('/user/calendar', function (){ 
+  this.render('userCalendar');
+}, {
+  name: 'user.calendar',
+  controller: 'GlobalController'
+});
+
+Router.route('/user/messages/list', function (){ 
+  this.render('pnList');
+}, {
+  name: 'user.pn.list',
+  controller: 'GlobalController'
+});
+
+Router.route('/user/messages/new', function (){ 
+  this.render('pnNew');
+}, {
+  name: 'user.pn.new',
+  controller: 'GlobalController'
+});
+
+Router.route('/user/messages/show/:_id', function (){ 
+  this.render('pnShow', {
+    data: function() {
+      Session.set('pnId', this.params._id);
+    }
+  });
+}, {
+  name: 'user.pn.show',
+  controller: 'GlobalController'
+});
+
+Router.route('/user/messages/edit/:_id', function (){ 
+  this.render('pnEdit');
+}, {
+  name: 'user.pn.edit',
+  controller: 'GlobalController'
+});
+
+/*
 Router.route('/ucp/:slug', function (){ 
   this.render('profileUCP', {
     data: function() {
@@ -87,3 +171,5 @@ Router.route('/profil/:slug', function (){
   name: 'profile.show',
   controller: 'GlobalController'
 });
+
+*/

@@ -1,17 +1,19 @@
 //-- template onCreated functions
-Template.home.onCreated(function () {
+Template.dashboard.onCreated(function () {
   var self = this;
   self.autorun(function () {
-    self.subscribe('getAllGames');   
+    self.subscribe('getAllGames');
+    self.subscribe('getAllGenres'); 
+    self.subscribe('getAllListedGames');        
   });
 });
 
 //-- template onDestroyed functions
-Template.home.onDestroyed(function () {
+Template.dashboard.onDestroyed(function () {
 });
 
 //-- template onRendered functions
-Template.home.onRendered(function () {
+Template.dashboard.onRendered(function () {
   /**
   EasySearch
     .getComponentInstance({ index: 'gamesHome' })
@@ -21,7 +23,7 @@ Template.home.onRendered(function () {
 });
 
 //-- template helpers                            
-Template.homeAll.helpers({
+Template.dashboardAll.helpers({
   getAllGames: function() {
     return Games.find().fetch();
   },
@@ -30,11 +32,36 @@ Template.homeAll.helpers({
     user = user.replace(/\./g, "").replace(/ /g, "_").replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/Ä/g,"Ae").replace(/Ö/g,"Oe").replace(/Ü/g,"Ue").replace(/ß/g,"ss");
     user = user.toLowerCase();
     return user;
+  },
+  getPlayerPath: function() {
+    var user = this.userName;
+    user = user.replace(/\./g, "").replace(/ /g, "_").replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/Ä/g,"Ae").replace(/Ö/g,"Oe").replace(/Ü/g,"Ue").replace(/ß/g,"ss");
+    user = user.toLowerCase();
+    return user;
+  },
+  checkIfJoined: function() {
+    var playerArr = [];
+    var check = false;
+    var user = Meteor.userId();
+    playerArr = this.gamePlayers;
+    if(playerArr){
+      playerArr.forEach(function(player){
+        if(player.userId == user){
+          check = true;
+        }
+      });
+      return check;
+    } 
+  },
+  checkFull: function() {
+    if(this.gameCount >= this.gamePlayerMax) {
+      return true;
+    }
   }
 });
 
 //-- template events
-Template.home.events({ 
+Template.dashboard.events({ 
   'keyup #gameHomeSearch': function(e) {
     if(e.currentTarget.value){
       EasySearch.changeProperty('gamesHome', 'filteredTitels', '');
@@ -50,10 +77,10 @@ Template.home.events({
       ;
     }
   },
-  'change #filterTitle': function(e) {
+  'change #gameTitle': function(e) {
     var searchInput = $(e.target).find('[name=gameHomeSearch]').val(); 
     var filteredTitels = e.currentTarget.value;
-    var filteredTypes = $(e.target).find('[name=filterType]').val();
+    var filteredTypes = $(e.target).find('[name=gameType]').val();
     var searchArr = [];
     var searchString = '';
     
@@ -69,7 +96,7 @@ Template.home.events({
     if(filteredTitels && !filteredTypes){      
       EasySearch.changeProperty('gamesHome', 'filteredTitels', searchArr);
       EasySearch.changeProperty('gamesHome', 'filteredTypes', '');
-      $('#filterType').val(null);
+      $('#gameType').val(null);
       EasySearch
         .getComponentInstance({ index: 'gamesHome' })
         .search(searchString)
@@ -88,9 +115,9 @@ Template.home.events({
       }     
     }
   },
-  'change #filterType': function(e) {
+  'change #gameType': function(e) {
     var searchInput = $(e.target).find('[name=gameHomeSearch]').val(); 
-    var filteredTitels = $(e.target).find('[name=filterTitle]').val();
+    var filteredTitels = $(e.target).find('[name=gameTitle]').val();
     var filteredTypes = e.currentTarget.value;
     var searchArr = [];
     var searchString = '';
@@ -107,7 +134,7 @@ Template.home.events({
     if(filteredTypes && !filteredTitels){      
       EasySearch.changeProperty('gamesHome', 'filteredTypes', searchArr);
       EasySearch.changeProperty('gamesHome', 'filteredTitels', '');
-      $('#filterTitle').val(null);
+      $('#gameTitle').val(null);
       EasySearch
         .getComponentInstance({ index: 'gamesHome' })
         .search(searchString)
@@ -126,4 +153,27 @@ Template.home.events({
       }     
     }
   },
+  'click .joinThis': function(e, tpl) {
+    e.preventDefault();
+    var gameId = e.currentTarget.id;
+    Meteor.call('addUserToGame', gameId, function(error, result) {
+      if(error)
+        toastr.error('Fehler: ' + error.reason);
+    });  
+  },
+  'click .leaveThis': function(e, tpl) {
+    e.preventDefault();
+    var gameId = e.currentTarget.id;
+    Meteor.call('removeUserFromGame', gameId, function(error, result) {
+      if(error)
+        toastr.error('Fehler: ' + error.reason);
+    });  
+  },
+  'click .joinDeactivated': function(e, tpl) {
+    e.preventDefault();
+    toastr.warning('Maximale Spielerzahl schon erreicht');
+  }
+  
+  
+  
 });

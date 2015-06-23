@@ -20,32 +20,11 @@
                 <input class="form-control typeahead" id="gameTitle" name="gameTitle" type="text" autocomplete="off" spellcheck="off" data-source="gameList">                   
               </div>
             </div>
-            <!-- gameType -->
-            <div class="form-group form-group-sm is-required">
-              <label for="gameType" class="col-sm-4 control-label">Genre</label>                   
-              <div class="col-sm-8">
-                {{> getGenresSelect}}                                           
-              </div>
-            </div>
             <!-- gameInfotext -->
             <div class="form-group">
               <label for="gameInfotext" class="col-sm-4 control-label">Erläuterung<br><br><small><span class="count"></span></small></label>                   
               <div class="col-sm-8">                       
                 <textarea class="form-control" id="gameInfotext" name="gameInfotext" rows="5" maxlength="200"></textarea>                   
-              </div>
-            </div>
-            <!-- gamePlayerMin -->
-            <div class="form-group form-group-sm">
-              <label for="gamePlayerMin" class="col-sm-4 control-label">Min. Spielerzahl</label>                   
-              <div class="col-sm-4">                       
-                <input type="text" class="form-control" id="gamePlayerMin" name="gamePlayerMin">                   
-              </div>
-            </div>
-            <!-- gamePlayerMax -->
-            <div class="form-group form-group-sm">
-              <label for="gamePlayerMax" class="col-sm-4 control-label">Max. Spielerzahl</label>                   
-              <div class="col-sm-4">                       
-                <input type="text" class="form-control" id="gamePlayerMax" name="gamePlayerMax">                   
               </div>
             </div>
             <!-- gameDate -->
@@ -56,6 +35,27 @@
               </div>
               <div class="clockpicker col-sm-4">                       
                 <input type="text" class="form-control" id="gameDateTime" name="gameDateTime" value="{{getTime}}">                    
+              </div>
+            </div>
+            <!-- gameOwnServer -->
+            <div class="form-group form-group-sm">
+              <label for="gameOwnServer" class="col-sm-4 control-label">Eigene Server</label>                   
+              <div class="col-sm-8">                       
+                <input type="checkbox" id="gameOwnServer" name="gameOwnServer" />                                 
+              </div>
+            </div>
+            <!-- gameServer -->
+            <div class="form-group form-group-sm">
+              <label for="gameServer" class="col-sm-4 control-label">Server</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="gameServer" name="gameServer">                   
+              </div>
+            </div>
+            <!-- gamePlayerMax -->
+            <div class="form-group form-group-sm">
+              <label for="gamePlayerMax" class="col-sm-4 control-label">Max. Spielerzahl</label>                   
+              <div class="col-sm-4">                       
+                <input type="text" class="form-control" id="gamePlayerMax" name="gamePlayerMax">                   
               </div>
             </div>            
           </fieldset>
